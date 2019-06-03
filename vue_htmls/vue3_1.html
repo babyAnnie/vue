@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>todolist功能开发</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="theId">
+			<input v-model="inputValue"/><button @click="handleSubmit">提交</button>
+			<ul>
+				<li v-for="(term,index) of list" :key="index">{{term}}</li>
+			</ul>
+		</div>
+		
+		<script>
+			new Vue({
+				el:"#theId",
+				data:{
+					inputValue:"input something",
+					list:[]
+				},
+				methods:{
+					handleSubmit:function(){
+						this.list.push(this.inputValue)
+						this.inputValue=''
+					}
+				},
+			})
+		</script>
+	</body>
+</html>

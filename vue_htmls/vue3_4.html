@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>实现todolist的删除功能</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="theId">
+			<input v-model="inputValue"/><button @click="handleSubmit">提交</button>
+			<ul>
+				<todo_item 
+					v-for="(item,index) of list" 
+					:content="item"
+					:key="index"
+					:index="index"
+					@delete="handleDelete"
+				>
+					<!-- :index="index" 父组件获取子组件的index -->
+				
+				<!--//把item给传参content。 注意：不要放在组件开标签里备注！-->
+				</todo_item>
+			</ul>
+			
+			<!--<h1>3-3组件和实例的关系</h1>
+			<p>每一个组件都是vue的实例，每一个vue实例就是一个组件。</p>-->
+		</div>
+		
+		<script>
+			//在vue中，父组件向子组件传值，要通过属性。
+			
+			//子组件（小组件）
+			//全局组件
+			Vue.component('todo_item',{
+				//props传递过来的参数列表
+				props:['content','index'],
+				template:'<li @click="handleClick">{{content}}</li>',
+				methods:{
+					handleClick:function(){
+						this.$emit('delete',this.index)
+					}
+				}
+			})
+			//局部组件
+//			var ToDoItem = {
+//				template:'<li>item</li>'
+//				
+//			}
+			
+			//父组件（大组件）
+			new Vue({
+				el:"#theId",
+				//局部组件注册
+//				components:{
+//					'todo_item':ToDoItem
+//				},
+				data:{
+					inputValue:"input something",
+					list:[]
+				},
+				methods:{
+					handleSubmit:function(){
+						this.list.push(this.inputValue)
+						this.inputValue=''
+					},
+					handleDelete:function(index){
+						//删除list对应index的一个值
+						this.list.splice(index,1)
+//						alert(index)
+					}
+				},
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>v-if, v-show, v-for指令</title>
+		<!--v-if（不怎么变更）控制存在与否
+			v-show（经常变更）控制显示与否
+			v-for 控制循环
+		-->
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="theId">
+			<div v-if="show">v-if指令</div>
+			<div v-show="show">v-show指令</div>
+			<button @click="handleClick">点我</button>
+			<ul>
+				<!--<li v-for="term of list">{{term}}</li>-->
+				<li v-for="(term,index) of list" :key="index">{{term}}</li>
+			</ul>
+		</div>
+		
+		<script>
+			new Vue({
+				el:"#theId",
+				data:{
+					show:true,
+					list:[1,1,3,4,5]
+				},
+				//注意：不要缺少,
+				methods:{
+					handleClick:function(){
+						this.show=!this.show
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

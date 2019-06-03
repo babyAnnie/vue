@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>2.3vue实例中的数据，事件和方法</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="hello">
+			<!-- {{}}插值表达式 -->
+			<h1>{{number}}</h1>
+			<!-- v-text，不会转义 -->
+			<!-- v-html，会转义 -->
+			<h2 v-text="number"></h2>
+			<h3 v-html="number"></h3>
+			<h3 v-text="content"></h3>
+			<h3 v-html="content"></h3>
+			<h3 v-html="content" @click="handleclick" style="color: red;">{{content}}</h3>
+			<!--常用@click(v-on的简写)-->
+			<div @click="handleclick">{{msg}}</div>
+			<!--<div v-on:click="handleclick">{{msg}}</div>-->
+		</div>
+		
+		<script>
+			new Vue({
+				el:"#hello",
+				data:{
+					number:123,
+					content:"<h1>hello vue!</h1>",
+					msg:"do something",
+				},
+				//methods
+				methods:{
+					handleclick:function(){
+//						alert(666)
+						this.content="I Love Vue!"
+					}
+				},
+				})
+		</script>
+	</body>
+</html>

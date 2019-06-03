@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>2.4Vue中属性绑定和双向数据绑定</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="propertyData">
+			<!-- 常用:(v-bind的简写)-->
+			<!--<div v-bind:title="title">Vue中属性绑定和双向数据绑定</div>-->
+			<div :title="title">Vue中属性绑定和双向数据绑定</div>
+			
+			<!--单向数据绑定:value-->
+			<!--<input :value="content" />-->
+			<!--双向数据绑定:v-model-->
+			<input v-model="content" />
+			<div>{{content}}</div>
+		</div>
+		<script>
+			new Vue({
+				el:"#propertyData",
+				data:{
+					title:"this is property and data",
+					content:"this is content",
+				}
+			})
+		</script>
+	</body>
+</html>

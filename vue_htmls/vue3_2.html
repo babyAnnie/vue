@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>todolist组件拆分</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="theId">
+			<input v-model="inputValue"/><button @click="handleSubmit">提交</button>
+			<ul>
+				<todo_item 
+					v-for="(item,index) of list" 
+					:content="item"
+					:key="index"
+				>
+				<!--//把item给传参content。 注意：不要放在组件开标签里备注！-->
+				</todo_item>
+			</ul>
+			
+			<!--<h1>3-3组件和实例的关系</h1>
+			<p>每一个组件都是vue的实例，每一个vue实例就是一个组件。</p>-->
+		</div>
+		
+		<script>
+			//全局组件
+			Vue.component('todo_item',{
+				//props传递过来的参数列表
+				props:['content'],
+				template:'<li @click="handleClick">{{content}}</li>',
+				methods:{
+					handleClick:function(){
+						alert("hello click")
+					}
+				}
+			})
+			//局部组件
+//			var ToDoItem = {
+//				template:'<li>item</li>'
+//				
+//			}
+			
+			new Vue({
+				el:"#theId",
+				//局部组件注册
+//				components:{
+//					'todo_item':ToDoItem
+//				},
+				data:{
+					inputValue:"input something",
+					list:[]
+				},
+				methods:{
+					handleSubmit:function(){
+						this.list.push(this.inputValue)
+						this.inputValue=''
+					}
+				},
+			})
+		</script>
+	</body>
+</html>
