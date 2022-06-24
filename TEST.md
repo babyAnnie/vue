@@ -6,9 +6,11 @@
 
 <img width=22 height=22 src="https://github.githubassets.com/images/icons/emoji/unicode/1fa9f.png?v8" />
 
-:window:
+:windows:
 
 🪟
 🚡
 ⬆️
+🪟
+💛
 🪟
